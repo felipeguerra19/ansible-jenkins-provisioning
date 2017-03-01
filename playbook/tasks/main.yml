@@ -1,0 +1,7 @@
+---
+  # Variable setup.
+  - name: Include AWS variables
+    include_vars: "AWS.yml"
+
+  - include: provisioning_ec2_instance.yml
+    when: provisioning_ec2_instance is defined

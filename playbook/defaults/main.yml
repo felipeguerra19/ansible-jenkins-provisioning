@@ -1,0 +1,23 @@
+---
+  ec2_instance:
+    region: "us-east-1"
+    profile: "felipe.guerra"
+    key_name: "key-us-east-1-default-bastion-01"
+    instance_type: "t2.micro"
+    image: "ami-900b96fc"
+    wait: "yes"
+    zone: "us-east-1a"
+    vpc_subnet_id: subnet-aa6ebcf3 #net-sa-east-1c-prd-vpc-001
+    assign_public_ip: no
+    termination_protection: yes
+    monitoring: yes
+    group: ['sgp-sa-east-1-pricing-backend-prd','sgp-sa-east-1-mlg-a-admin-01']
+    instance_tags:
+      'Name': 'srv-lx-sa-east-1a-mlg-a-pricing-backend-api-prd'
+      'Created-by': 'felipe'
+    volumes:
+    - device_name: /dev/sdb
+      volume_type: gp2 #http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html
+      volume_size: 8
+      delete_on_termination: true
+    wait_timeout: 300

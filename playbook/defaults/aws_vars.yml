@@ -1,0 +1,17 @@
+---
+  ec2_instance:
+    region: "us-east-1"
+    profile: "felipe.guerra"
+    key_name: "key-us-east-1-default-bastion-01"
+    instance_type: "t2.micro"
+    image: ""
+    wait: "yes"
+    zone: "us-east-1a"
+    vpc_subnet_id: "{{ item.vpc_subnet_id }}"
+    assign_public_ip: "no"
+    termination_protection: "yes"
+    monitoring: "yes"
+    group: "{{ item.group }}"
+    instance_tags: "{{ item.instance_tags }}"
+    volumes: "{{ item.volumes }}"
+    wait_timeout: 300

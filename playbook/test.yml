@@ -1,7 +1,13 @@
 ---
-- hosts: localhost
-  remote_user: root
+- hosts: '{{ hosts }}'
+  remote_user: '{{ user }}'
   become: yes
+  vars:
+    provisioning_ec2_instance: yes
+
+  tasks:
+  - include: tasks/main.yml
+    check_mode: yes
 
   roles:
     - ansible-role-java

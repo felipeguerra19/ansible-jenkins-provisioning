@@ -1,0 +1,21 @@
+---
+  - name: provisioning ec2 instances backend
+    ec2:
+       state: present
+       region: "{{ ec2_instance.region }}"
+       profile: "{{ ec2_instance.profile }}"
+       key_name: "{{ ec2_instance.key_name }}"
+       instance_type: "{{ ec2_instance.instance_type }}"
+       image: "{{ ec2_instance.image }}"
+       wait: "{{ ec2_instance.wait }}"
+       zone: "{{ ec2_instance.zone }}"
+       vpc_subnet_id: "{{ ec2_instance.vpc_subnet_id }}"
+       assign_public_ip: "{{ ec2_instance.assign_public_ip }}"
+       termination_protection: "{{ ec2_instance.termination_protection }}"
+       monitoring: "{{ ec2_instance.monitoring }}"
+       group: "{{ ec2_instance.group }}"
+       instance_tags: "{{ ec2_instance.instance_tags }}"
+       volumes: "{{ ec2_instance.volumes }}"
+       wait_timeout: "{{ ec2_instance.wait_timeout }}"
+    when: create_ec2_core_instances|default(True)
+    register: ec2_create_instance_facts
