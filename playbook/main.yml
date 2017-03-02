@@ -1,0 +1,8 @@
+---
+- hosts: tag_Name_srv_lx_sa_east_1a_mlg_a_admin_01
+  remote_user: ec2-user
+  become: yes
+
+  roles:
+#    - ansible-role-java
+    - ansible-role-jenkins

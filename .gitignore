@@ -1,3 +1,5 @@
 .vagrant
-files/credentials
+#files/credentials
 .git
+#files/key-us-east-1-default-bastion-01.pem
+#files/key-us-east-1-mlg-a-admin-01.pem

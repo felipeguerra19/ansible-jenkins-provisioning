@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  remote_user: root
+  become: yes
+  vars:
+    provisioning_ec2_instance: yes
+
+  tasks:
+  - include: tasks/main.yml
+    check_mode: no

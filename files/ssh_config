@@ -1,0 +1,21 @@
+Host bastion.ua-east-1
+  Hostname 34.199.172.18
+  User ec2-user
+  IdentityFile ~/.ssh/key-us-east-1-default-bastion-01.pem
+  ForwardAgent yes
+  ControlMaster auto
+  ServerAliveInterval 6000
+  TCPKeepAlive yes
+  ControlPath ~/.ssh/ansible-%r@%h:%p
+  ControlPersist 8h
+
+Host 10.180.*
+  ProxyCommand ssh -q -A ec2-user@34.199.172.18 -i ~/.ssh/key-us-east-1-default-bastion-01.pem nc %h %p
+  IdentityFile ~/.ssh/key-us-east-1-mlg-a-admin-01.pem
+  ServerAliveInterval 6000
+  TCPKeepAlive yes
+  ControlMaster auto
+  ControlPath ~/.ssh/ansible-%r@%h:%p
+  User ec2-user
+  ForwardAgent yes
+  ControlPersist 8h

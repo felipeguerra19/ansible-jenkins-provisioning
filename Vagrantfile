@@ -68,7 +68,15 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", path: "files/setup.sh"
+  config.vm.provision "shell", path: "files/setup.sh", env: {"ANSIBLE_HOSTS" => "/etc/ansible/ec2.py", "EC2_INI_PATH" => "/etc/ansible/ec2.ini"}
+
+  config.vm.provision "file", source: "files/ec2.ini", destination: "/etc/ansible/ec2.ini"
+  config.vm.provision "file", source: "files/ec2.py", destination: "/etc/ansible/ec2.py"
+  config.vm.provision "file", source: "files/key-us-east-1-default-bastion-01.pem", destination: "~/.ssh/key-us-east-1-default-bastion-01.pem"
+  config.vm.provision "file", source: "files/key-us-east-1-mlg-a-admin-01.pem", destination: "~/.ssh/key-us-east-1-mlg-a-admin-01.pem"
+  config.vm.provision "file", source: "files/ssh_config", destination: "~/.ssh/config"
+  config.vm.provision "file", source: "files/credentials", destination: "~/.aws/credentials"
+
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get -y install curl python libssl-dev git build-essential libssl-dev libffi-dev python-dev
